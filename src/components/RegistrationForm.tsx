@@ -1,7 +1,11 @@
 const RegistrationForm = () => {
   return (
-    <section id="register" className="py-20 px-4">
+    <section
+      id="register"
+      className="py-20 px-4 bg-gradient-to-b from-background to-background/80"
+    >
       <div className="container mx-auto max-w-4xl">
+        {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">
             Register Your Food Stall
@@ -11,19 +15,27 @@ const RegistrationForm = () => {
           </p>
         </div>
 
-        <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-4 md:p-8 shadow-2xl">
-          <iframe 
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfYjQydmzFHTvnijVSaFrEjUxUHN2V9v3teG181e5fvtuJOMA/viewform?embedded=true" 
-            width="100%" 
-            height="1463" 
-            frameBorder="0" 
-            marginHeight={0} 
-            marginWidth={0}
-            className="rounded-lg"
-            title="Food Stall Registration Form"
-          >
-            Loading…
-          </iframe>
+        {/* Form Card */}
+        <div className="relative rounded-2xl overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.6)] border border-border/40 bg-card/60 backdrop-blur-xl">
+
+          {/* Top Accent Bar */}
+          <div className="h-2 w-full bg-gradient-to-r from-primary via-purple-500 to-primary" />
+
+          {/* Iframe Wrapper */}
+          <div className="p-3 md:p-5 bg-background/90">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfYjQydmzFHTvnijVSaFrEjUxUHN2V9v3teG181e5fvtuJOMA/viewform?embedded=true"
+              width="100%"
+              height="1460"
+              frameBorder="0"
+              marginHeight={0}
+              marginWidth={0}
+              className="rounded-xl bg-white"
+              title="Food Stall Registration Form"
+            >
+              Loading…
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
