@@ -51,13 +51,13 @@ const RegistrationForm = () => {
       const form = new FormData();
       // Map your form fields to Google Form entry IDs
       // You'll need to inspect your Google Form to get the correct entry IDs
-      form.append("entry.596683442", formData.stallName);
-      form.append("entry.XXXXXX", formData.ownerName);
-      form.append("entry.XXXXXX", formData.email);
-      form.append("entry.XXXXXX", formData.phone);
-      form.append("entry.XXXXXX", formData.foodCategory);
-      form.append("entry.XXXXXX", formData.menuItems);
-      form.append("entry.XXXXXX", formData.specialRequirements);
+      form.append("entry.601523396", formData.stallName);
+      form.append("entry.2020729575", formData.ownerName);
+      form.append("entry.1146758362", formData.email);
+      form.append("entry.1274800846", formData.phone);
+      form.append("entry.1535600442", formData.foodCategory);
+      form.append("entry.1832004683", formData.menuItems);
+      form.append("entry.1208864290", formData.specialRequirements);
 
       await fetch(GOOGLE_FORM_ACTION, {
         method: "POST",
