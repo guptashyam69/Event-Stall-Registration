@@ -1,53 +1,33 @@
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzp_NEmTxc4PmS6rg1m5rBTdSpVLKo9mMShIPQn8TR7ZzFfdmw9je8AaRpMtwkz1C7V/exec";
+const RegistrationForm = () => {
+  return (
+    <section id="register" className="py-20 px-4">
+      <div className="container mx-auto max-w-4xl">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">
+            Register Your Food Stall
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Fill out the form below to secure your spot at the most anticipated food festival of the year
+          </p>
+        </div>
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-
-  const payload = {
-    stallName: formData.stallName,
-    ownerName: formData.ownerName,
-    email: formData.email,
-    phone: formData.phone,
-    foodCategory: formData.foodCategory,
-    menuItems: formData.menuItems,
-    specialRequirements: formData.specialRequirements,
-  };
-
-  try {
-    const res = await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const result = await res.json();
-
-    if (result.status === "success") {
-      toast({
-        title: "Submitted successfully ✅",
-        description: "Your data has been saved to Google Sheets",
-      });
-
-      setFormData({
-        stallName: "",
-        ownerName: "",
-        email: "",
-        phone: "",
-        foodCategory: "",
-        menuItems: "",
-        specialRequirements: "",
-      });
-    } else {
-      throw new Error(result.message);
-    }
-  } catch (err) {
-    toast({
-      title: "Submission failed ❌",
-      description: "Check Apps Script permissions or Sheet ID",
-      variant: "destructive",
-    });
-  }
+        <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-4 md:p-8 shadow-2xl">
+          <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfYjQydmzFHTvnijVSaFrEjUxUHN2V9v3teG181e5fvtuJOMA/viewform?embedded=true" 
+            width="100%" 
+            height="1463" 
+            frameBorder="0" 
+            marginHeight={0} 
+            marginWidth={0}
+            className="rounded-lg"
+            title="Food Stall Registration Form"
+          >
+            Loading…
+          </iframe>
+        </div>
+      </div>
+    </section>
+  );
 };
+
+export default RegistrationForm;
