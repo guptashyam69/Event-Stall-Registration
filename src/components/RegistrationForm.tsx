@@ -1,203 +1,225 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Food Stall Registration</title>
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { Send, Utensils, User, Phone, Mail, Store } from "lucide-react";
 
-  <!-- Icons -->
-  <link href="https://unpkg.com/lucide-static@latest/font/lucide.css" rel="stylesheet">
+/* ✅ MUST end with /formResponse */
+const GOOGLE_FORM_ACTION =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfYjQydmzFHTvnijVSaFrEjUxUHN2V9v3teG181e5fvtuJOMA/formResponse";
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Inter, system-ui, sans-serif;
+const RegistrationForm = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    stallName: "",
+    ownerName: "",
+    email: "",
+    phone: "",
+    foodCategory: "",
+    menuItems: "",
+    specialRequirements: "",
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, foodCategory: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    if (
+      !formData.stallName ||
+      !formData.ownerName ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.foodCategory
+    ) {
+      toast({
+        title: "Please fill all required fields",
+        description: "All fields marked with * are mandatory.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
     }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #0f172a, #020617);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+    try {
+      const form = new FormData();
+
+      /* ✅ CORRECT entry IDs */
+      form.append("entry.601523396", formData.stallName);
+      form.append("entry.2020729575", formData.ownerName);
+      form.append("entry.1146758362", formData.email);
+      form.append("entry.1274800846", formData.phone);
+      form.append("entry.1535600442", formData.foodCategory);
+      form.append("entry.1832004683", formData.menuItems);
+      form.append("entry.1208864290", formData.specialRequirements);
+
+      await fetch(GOOGLE_FORM_ACTION, {
+        method: "POST",
+        body: form,
+        mode: "no-cors", // REQUIRED
+      });
+
+      toast({
+        title: "Form Submitted ✅",
+        description:
+          "Your registration has been recorded. We'll contact you soon.",
+      });
+
+      setFormData({
+        stallName: "",
+        ownerName: "",
+        email: "",
+        phone: "",
+        foodCategory: "",
+        menuItems: "",
+        specialRequirements: "",
+      });
+    } catch {
+      toast({
+        title: "Submission Failed",
+        description: "Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
+  };
 
-    .container {
-      width: 100%;
-      max-width: 760px;
-      background: rgba(15, 23, 42, 0.75);
-      border: 1px solid rgba(148, 163, 184, 0.15);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 25px 80px rgba(0,0,0,0.6);
-    }
+  return (
+    <section id="register" className="py-20 px-4">
+      <div className="container mx-auto max-w-2xl">
+        <div className="bg-card/50 rounded-2xl p-6 md:p-10 shadow-2xl">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <Label>
+                  <Store className="inline w-4 h-4 mr-1" />
+                  Stall Name *
+                </Label>
+                <Input
+                  name="stallName"
+                  value={formData.stallName}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-    h1 {
-      text-align: center;
-      margin-bottom: 8px;
-      font-size: 32px;
-    }
+              <div>
+                <Label>
+                  <User className="inline w-4 h-4 mr-1" />
+                  Owner Name *
+                </Label>
+                <Input
+                  name="ownerName"
+                  value={formData.ownerName}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-    .subtitle {
-      text-align: center;
-      color: #94a3b8;
-      margin-bottom: 32px;
-    }
+              <div>
+                <Label>
+                  <Mail className="inline w-4 h-4 mr-1" />
+                  Email *
+                </Label>
+                <Input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
+              <div>
+                <Label>
+                  <Phone className="inline w-4 h-4 mr-1" />
+                  Phone *
+                </Label>
+                <Input
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
 
-    @media (max-width: 640px) {
-      .grid { grid-template-columns: 1fr; }
-    }
+            <div>
+              <Label>
+                <Utensils className="inline w-4 h-4 mr-1" />
+                Food Category *
+              </Label>
+              <Select
+                value={formData.foodCategory}
+                onValueChange={handleSelectChange}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select food category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Indian Cuisine">Indian Cuisine</SelectItem>
+                  <SelectItem value="Chinese / Indo-Chinese">
+                    Chinese / Indo-Chinese
+                  </SelectItem>
+                  <SelectItem value="Street Food">Street Food</SelectItem>
+                  <SelectItem value="Desserts & Sweets">
+                    Desserts & Sweets
+                  </SelectItem>
+                  <SelectItem value="Beverages & Drinks">
+                    Beverages & Drinks
+                  </SelectItem>
+                  <SelectItem value="Snacks & Fast Food">
+                    Snacks & Fast Food
+                  </SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-    label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-      font-size: 14px;
-      font-weight: 500;
-    }
+            <Textarea
+              name="menuItems"
+              value={formData.menuItems}
+              onChange={handleInputChange}
+              placeholder="Menu Items (Optional)"
+            />
 
-    label i { color: #facc15; }
+            <Textarea
+              name="specialRequirements"
+              value={formData.specialRequirements}
+              onChange={handleInputChange}
+              placeholder="Special Requirements (Optional)"
+            />
 
-    input, select, textarea {
-      width: 100%;
-      background: rgba(2, 6, 23, 0.7);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: 14px;
-      padding: 14px 16px;
-      color: #fff;
-      font-size: 15px;
-      outline: none;
-    }
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Register Your Stall"}
+              <Send className="ml-2 w-4 h-4" />
+            </Button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-    input::placeholder, textarea::placeholder {
-      color: #64748b;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: #facc15;
-    }
-
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .full { grid-column: span 2; }
-
-    @media (max-width: 640px) {
-      .full { grid-column: span 1; }
-    }
-
-    button {
-      margin-top: 24px;
-      width: 100%;
-      background: linear-gradient(to right, #facc15, #eab308);
-      border: none;
-      border-radius: 16px;
-      padding: 16px;
-      font-size: 18px;
-      font-weight: 600;
-      cursor: pointer;
-      color: #020617;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .footer-text {
-      margin-top: 14px;
-      text-align: center;
-      font-size: 13px;
-      color: #94a3b8;
-    }
-  </style>
-</head>
-
-<body>
-
-<form class="container"
-      action="https://formspree.io/f/xrebqgge"
-      method="POST">
-
-  <h1>Register Your Food Stall</h1>
-  <p class="subtitle">
-    Fill out the form below to secure your spot at the food festival
-  </p>
-
-  <div class="grid">
-
-    <div>
-      <label><i class="lucide-store"></i> Stall Name *</label>
-      <input name="stall_name" required placeholder="e.g., Spice Garden">
-    </div>
-
-    <div>
-      <label><i class="lucide-user"></i> Owner Name *</label>
-      <input name="owner_name" required placeholder="Your full name">
-    </div>
-
-    <div>
-      <label><i class="lucide-mail"></i> Email Address *</label>
-      <input type="email" name="email" required placeholder="your@email.com">
-    </div>
-
-    <div>
-      <label><i class="lucide-phone"></i> Phone Number *</label>
-      <input name="phone" required placeholder="+91 98765 43210">
-    </div>
-
-    <div class="full">
-      <label><i class="lucide-utensils"></i> Food Category *</label>
-      <select name="food_category" required>
-        <option value="" disabled selected>Select your food category</option>
-        <option>Indian Cuisine</option>
-        <option>Chinese / Indo-Chinese</option>
-        <option>Street Food</option>
-        <option>Desserts & Sweets</option>
-        <option>Beverages & Drinks</option>
-        <option>Snacks & Fast Food</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    <div class="full">
-      <label>Menu Items (Optional)</label>
-      <textarea name="menu_items" placeholder="List your main menu items..."></textarea>
-    </div>
-
-    <div class="full">
-      <label>Special Requirements (Optional)</label>
-      <textarea name="special_requirements" placeholder="Any special equipment or space requirements..."></textarea>
-    </div>
-
-  </div>
-
-  <!-- Formspree extras -->
-  <input type="hidden" name="_subject" value="New Food Stall Registration">
-  <input type="hidden" name="_template" value="table">
-  <input type="text" name="_gotcha" style="display:none">
-
-  <button type="submit">
-    <i class="lucide-send"></i>
-    Register Your Stall
-  </button>
-
-  <p class="footer-text">
-    By registering, you agree to follow the event guidelines and food safety standards.
-  </p>
-
-</form>
-
-</body>
-</html>
+export default RegistrationForm;
