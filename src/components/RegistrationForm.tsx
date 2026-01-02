@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { Send, Utensils, User, Phone, Mail, Store } from "lucide-react";
 
-const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSfYjQydmzFHTvnijVSaFrEjUxUHN2V9v3teG181e5fvtuJOMA/formResponse";
+const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/u/0/d/1qk6EQINZ7E1w6a1HCjGYM8KCOTNthHZPULzcPfY83XY";
 
 const RegistrationForm = () => {
   const { toast } = useToast();
