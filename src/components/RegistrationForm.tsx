@@ -1,184 +1,92 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { Send, Utensils, User, Phone, Mail, Store } from "lucide-react";
-
-const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzp_NEmTxc4PmS6rg1m5rBTdSpVLKo9mMShIPQn8TR7ZzFfdmw9je8AaRpMtwkz1C7V/exec";
-
 const RegistrationForm = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const [formData, setFormData] = useState({
-    stallName: "",
-    ownerName: "",
-    email: "",
-    phone: "",
-    foodCategory: "",
-    menuItems: "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch(SCRIPT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) throw new Error("Failed");
-
-      toast({
-        title: "Registration Successful 🎉",
-        description: "Your data has been saved successfully.",
-      });
-
-      setFormData({
-        stallName: "",
-        ownerName: "",
-        email: "",
-        phone: "",
-        foodCategory: "",
-        menuItems: "",
-      });
-    } catch (err) {
-      toast({
-        title: "Submission Failed",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
-    <section className="py-20 px-4">
-      <div className="container mx-auto max-w-3xl">
-        <form
-          onSubmit={handleSubmit}
-          className="bg-card/60 backdrop-blur rounded-2xl p-6 space-y-6 border"
-        >
-          <h2 className="text-3xl font-bold text-center">
+    <section id="register" className="py-20 px-4">
+      <div className="container mx-auto max-w-4xl">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">
             Register Your Food Stall
           </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Fill out the form below to secure your spot
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <Label>
-                <Store className="inline w-4 h-4 mr-1" />
-                Stall Name *
-              </Label>
-              <Input
+        <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-6 shadow-2xl">
+          
+          <form
+            action="https://script.google.com/macros/s/AKfycbwCETQsMMODSce6vryOMGBcMjcUGcXEjYIbJSt3nKgo2UV34uqAByMERSda3E2eO9D5/exec"
+            method="POST"
+            className="space-y-6"
+          >
+
+            <div className="grid md:grid-cols-2 gap-6">
+
+              <input
                 name="stallName"
-                value={formData.stallName}
-                onChange={handleChange}
+                placeholder="Stall Name"
                 required
+                className="input"
               />
-            </div>
 
-            <div>
-              <Label>
-                <User className="inline w-4 h-4 mr-1" />
-                Owner Name *
-              </Label>
-              <Input
+              <input
                 name="ownerName"
-                value={formData.ownerName}
-                onChange={handleChange}
+                placeholder="Owner Name"
                 required
+                className="input"
               />
-            </div>
 
-            <div>
-              <Label>
-                <Mail className="inline w-4 h-4 mr-1" />
-                Email *
-              </Label>
-              <Input
+              <input
                 name="email"
                 type="email"
-                value={formData.email}
-                onChange={handleChange}
+                placeholder="Email"
                 required
+                className="input"
               />
-            </div>
 
-            <div>
-              <Label>
-                <Phone className="inline w-4 h-4 mr-1" />
-                Phone *
-              </Label>
-              <Input
+              <input
                 name="phone"
-                value={formData.phone}
-                onChange={handleChange}
+                placeholder="Phone Number"
                 required
+                className="input"
               />
             </div>
-          </div>
 
-          <div>
-            <Label>
-              <Utensils className="inline w-4 h-4 mr-1" />
-              Food Category *
-            </Label>
-            <Select
-              value={formData.foodCategory}
-              onValueChange={(v) =>
-                setFormData((p) => ({ ...p, foodCategory: v }))
-              }
+            <select
+              name="foodCategory"
+              required
+              className="input w-full"
             >
-              <SelectTrigger>
-                <SelectValue placeholder="Select category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Indian">Indian</SelectItem>
-                <SelectItem value="Chinese">Chinese</SelectItem>
-                <SelectItem value="Street Food">Street Food</SelectItem>
-                <SelectItem value="Desserts">Desserts</SelectItem>
-                <SelectItem value="Beverages">Beverages</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+              <option value="">Select food category</option>
+              <option>Indian Cuisine</option>
+              <option>Chinese / Indo-Chinese</option>
+              <option>Street Food</option>
+              <option>Desserts & Sweets</option>
+              <option>Beverages & Drinks</option>
+              <option>Snacks & Fast Food</option>
+            </select>
 
-          <div>
-            <Label>Menu Items (Optional)</Label>
-            <Textarea
+            <textarea
               name="menuItems"
-              value={formData.menuItems}
-              onChange={handleChange}
+              placeholder="Menu items"
+              className="input"
             />
-          </div>
 
-          <Button disabled={isSubmitting} className="w-full">
-            <Send className="w-4 h-4 mr-2" />
-            {isSubmitting ? "Submitting..." : "Submit"}
-          </Button>
-        </form>
+            <textarea
+              name="specialRequirements"
+              placeholder="Special requirements"
+              className="input"
+            />
+
+            <button
+              type="submit"
+              className="w-full bg-yellow-400 text-black py-3 rounded-xl font-semibold"
+            >
+              Submit
+            </button>
+
+          </form>
+
+        </div>
       </div>
     </section>
   );
