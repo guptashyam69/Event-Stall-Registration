@@ -1,251 +1,203 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { Send, Utensils, User, Phone, Mail, Store } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Stall Registration</title>
 
-const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSfYjQydmzFHTvnijVSaFrEjUxUHN2V9v3teG181e5fvtuJOMA";
+  <!-- Icons -->
+  <link href="https://unpkg.com/lucide-static@latest/font/lucide.css" rel="stylesheet">
 
-const RegistrationForm = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    stallName: "",
-    ownerName: "",
-    email: "",
-    phone: "",
-    foodCategory: "",
-    menuItems: "",
-    specialRequirements: "",
-  });
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, foodCategory: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    if (!formData.stallName || !formData.ownerName || !formData.email || !formData.phone || !formData.foodCategory) {
-      toast({
-        title: "Please fill all required fields",
-        description: "All fields marked with * are mandatory.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Inter, system-ui, sans-serif;
     }
 
-    try {
-      const form = new FormData();
-      // Map your form fields to Google Form entry IDs
-      // You'll need to inspect your Google Form to get the correct entry IDs
-      form.append("entry.601523396", formData.stallName);
-      form.append("entry.2020729575", formData.ownerName);
-      form.append("entry.1146758362", formData.email);
-      form.append("entry.1274800846", formData.phone);
-      form.append("entry.1535600442", formData.foodCategory);
-      form.append("entry.1832004683", formData.menuItems);
-      form.append("entry.1208864290", formData.specialRequirements);
-
-      await fetch(GOOGLE_FORM_ACTION, {
-        method: "POST",
-        body: form,
-        mode: "no-cors",
-      });
-
-      toast({
-        title: "Registration Successful! 🎉",
-        description: "Your food stall has been registered. We'll contact you soon!",
-      });
-
-      setFormData({
-        stallName: "",
-        ownerName: "",
-        email: "",
-        phone: "",
-        foodCategory: "",
-        menuItems: "",
-        specialRequirements: "",
-      });
-    } catch (error) {
-      toast({
-        title: "Submission Failed",
-        description: "Please try again or contact us directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
     }
-  };
 
-  return (
-    <section id="register" className="py-20 px-4">
-      <div className="container mx-auto max-w-2xl">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">
-            Register Your Food Stall
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Fill out the form below to secure your spot at the most anticipated food festival of the year
-          </p>
-        </div>
+    .container {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+    }
 
-        <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-6 md:p-10 shadow-2xl">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="stallName" className="text-foreground flex items-center gap-2">
-                  <Store className="w-4 h-4 text-primary" />
-                  Stall Name *
-                </Label>
-                <Input
-                  id="stallName"
-                  name="stallName"
-                  value={formData.stallName}
-                  onChange={handleInputChange}
-                  placeholder="e.g., Spice Garden"
-                  className="bg-secondary/50 border-border focus:border-primary transition-colors"
-                  required
-                />
-              </div>
+    h1 {
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 32px;
+    }
 
-              <div className="space-y-2">
-                <Label htmlFor="ownerName" className="text-foreground flex items-center gap-2">
-                  <User className="w-4 h-4 text-primary" />
-                  Owner Name *
-                </Label>
-                <Input
-                  id="ownerName"
-                  name="ownerName"
-                  value={formData.ownerName}
-                  onChange={handleInputChange}
-                  placeholder="Your full name"
-                  className="bg-secondary/50 border-border focus:border-primary transition-colors"
-                  required
-                />
-              </div>
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 32px;
+    }
 
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-foreground flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-primary" />
-                  Email Address *
-                </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="your@email.com"
-                  className="bg-secondary/50 border-border focus:border-primary transition-colors"
-                  required
-                />
-              </div>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
 
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-foreground flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-primary" />
-                  Phone Number *
-                </Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  placeholder="+91 98765 43210"
-                  className="bg-secondary/50 border-border focus:border-primary transition-colors"
-                  required
-                />
-              </div>
-            </div>
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+    }
 
-            <div className="space-y-2">
-              <Label htmlFor="foodCategory" className="text-foreground flex items-center gap-2">
-                <Utensils className="w-4 h-4 text-primary" />
-                Food Category *
-              </Label>
-              <Select onValueChange={handleSelectChange} value={formData.foodCategory}>
-                <SelectTrigger className="bg-secondary/50 border-border focus:border-primary">
-                  <SelectValue placeholder="Select your food category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="indian">Indian Cuisine</SelectItem>
-                  <SelectItem value="chinese">Chinese / Indo-Chinese</SelectItem>
-                  <SelectItem value="street-food">Street Food</SelectItem>
-                  <SelectItem value="desserts">Desserts & Sweets</SelectItem>
-                  <SelectItem value="beverages">Beverages & Drinks</SelectItem>
-                  <SelectItem value="snacks">Snacks & Fast Food</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 500;
+    }
 
-            <div className="space-y-2">
-              <Label htmlFor="menuItems" className="text-foreground">
-                Menu Items (Optional)
-              </Label>
-              <Textarea
-                id="menuItems"
-                name="menuItems"
-                value={formData.menuItems}
-                onChange={handleInputChange}
-                placeholder="List your main menu items..."
-                className="bg-secondary/50 border-border focus:border-primary transition-colors min-h-[100px]"
-              />
-            </div>
+    label i { color: #facc15; }
 
-            <div className="space-y-2">
-              <Label htmlFor="specialRequirements" className="text-foreground">
-                Special Requirements (Optional)
-              </Label>
-              <Textarea
-                id="specialRequirements"
-                name="specialRequirements"
-                value={formData.specialRequirements}
-                onChange={handleInputChange}
-                placeholder="Any special equipment or space requirements..."
-                className="bg-secondary/50 border-border focus:border-primary transition-colors min-h-[80px]"
-              />
-            </div>
+    input, select, textarea {
+      width: 100%;
+      background: rgba(2, 6, 23, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+    }
 
-            <Button
-              type="submit"
-              variant="hero"
-              size="xl"
-              className="w-full"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <>Submitting...</>
-              ) : (
-                <>
-                  <Send className="w-5 h-5" />
-                  Register Your Stall
-                </>
-              )}
-            </Button>
+    input::placeholder, textarea::placeholder {
+      color: #64748b;
+    }
 
-            <p className="text-center text-muted-foreground text-sm">
-              By registering, you agree to follow the event guidelines and food safety standards.
-            </p>
-          </form>
-        </div>
-      </div>
-    </section>
-  );
-};
+    input:focus, select:focus, textarea:focus {
+      border-color: #facc15;
+    }
 
-export default RegistrationForm;
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .full { grid-column: span 2; }
+
+    @media (max-width: 640px) {
+      .full { grid-column: span 1; }
+    }
+
+    button {
+      margin-top: 24px;
+      width: 100%;
+      background: linear-gradient(to right, #facc15, #eab308);
+      border: none;
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .footer-text {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+
+<form class="container"
+      action="https://formspree.io/f/xrebqgge"
+      method="POST">
+
+  <h1>Register Your Food Stall</h1>
+  <p class="subtitle">
+    Fill out the form below to secure your spot at the food festival
+  </p>
+
+  <div class="grid">
+
+    <div>
+      <label><i class="lucide-store"></i> Stall Name *</label>
+      <input name="stall_name" required placeholder="e.g., Spice Garden">
+    </div>
+
+    <div>
+      <label><i class="lucide-user"></i> Owner Name *</label>
+      <input name="owner_name" required placeholder="Your full name">
+    </div>
+
+    <div>
+      <label><i class="lucide-mail"></i> Email Address *</label>
+      <input type="email" name="email" required placeholder="your@email.com">
+    </div>
+
+    <div>
+      <label><i class="lucide-phone"></i> Phone Number *</label>
+      <input name="phone" required placeholder="+91 98765 43210">
+    </div>
+
+    <div class="full">
+      <label><i class="lucide-utensils"></i> Food Category *</label>
+      <select name="food_category" required>
+        <option value="" disabled selected>Select your food category</option>
+        <option>Indian Cuisine</option>
+        <option>Chinese / Indo-Chinese</option>
+        <option>Street Food</option>
+        <option>Desserts & Sweets</option>
+        <option>Beverages & Drinks</option>
+        <option>Snacks & Fast Food</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="full">
+      <label>Menu Items (Optional)</label>
+      <textarea name="menu_items" placeholder="List your main menu items..."></textarea>
+    </div>
+
+    <div class="full">
+      <label>Special Requirements (Optional)</label>
+      <textarea name="special_requirements" placeholder="Any special equipment or space requirements..."></textarea>
+    </div>
+
+  </div>
+
+  <!-- Formspree extras -->
+  <input type="hidden" name="_subject" value="New Food Stall Registration">
+  <input type="hidden" name="_template" value="table">
+  <input type="text" name="_gotcha" style="display:none">
+
+  <button type="submit">
+    <i class="lucide-send"></i>
+    Register Your Stall
+  </button>
+
+  <p class="footer-text">
+    By registering, you agree to follow the event guidelines and food safety standards.
+  </p>
+
+</form>
+
+</body>
+</html>
