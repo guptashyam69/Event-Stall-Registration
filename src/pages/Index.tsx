@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CountdownTimer } from "@/components/CountdownTimer";
-import { RegistrationForm } from "@/components/RegistrationForm";
+import RegistrationForm from "@/components/RegistrationForm";
 import { Guidelines } from "@/components/Guidelines";
 import { Confetti } from "@/components/Confetti";
 import { PartyPopper, Sparkles, UtensilsCrossed } from "lucide-react";
@@ -92,24 +92,7 @@ const Index = () => {
       </section>
 
       {/* Registration Section */}
-      <section id="register" className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Register Your <span className="text-gradient-gold">Food Stall</span>
-              </h2>
-              <p className="text-muted-foreground">
-                Fill out the form below to secure your spot at the food festival
-              </p>
-            </div>
-
-            <div className="bg-gradient-card border border-border rounded-2xl p-6 md:p-10 shadow-xl">
-              <RegistrationForm />
-            </div>
-          </div>
-        </div>
-      </section>
+      <RegistrationForm />
 
       {/* Guidelines Section */}
       <section id="guidelines" className="py-20 bg-card">
