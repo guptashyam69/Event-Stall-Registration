@@ -1,7 +1,7 @@
+import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CountdownTimer } from "@/components/CountdownTimer";
-import RegistrationForm from "@/components/RegistrationForm";
 import { Guidelines } from "@/components/Guidelines";
 import { Confetti } from "@/components/Confetti";
 import { PartyPopper, Sparkles, UtensilsCrossed } from "lucide-react";
@@ -39,10 +39,10 @@ const Index = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "400ms" }}>
             <Button variant="hero" size="xl" asChild>
-              <a href="#register">
+              <Link to="/register">
                 <UtensilsCrossed className="w-5 h-5" />
                 Register Now
-              </a>
+              </Link>
             </Button>
             <Button variant="outline" size="xl" asChild>
               <a href="#guidelines">
@@ -90,9 +90,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Registration Section */}
-      <RegistrationForm />
 
       {/* Guidelines Section */}
       <section id="guidelines" className="py-20 bg-card">
