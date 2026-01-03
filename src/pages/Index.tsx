@@ -75,15 +75,15 @@ const Index = () => {
             </p>
             <div className="grid grid-cols-3 gap-6 max-w-md mx-auto">
               <div className="text-center">
-                <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">50+</p>
+                <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">10+</p>
                 <p className="text-muted-foreground text-sm">Open Stalls</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">1000+</p>
+                <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">100+</p>
                 <p className="text-muted-foreground text-sm">Attendees</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">8+</p>
+                <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">4+</p>
                 <p className="text-muted-foreground text-sm">Hours of Fun</p>
               </div>
             </div>
