@@ -4,12 +4,12 @@ const guidelines = [
   {
     icon: Clock,
     title: "Event Timing",
-    description: "December 31st, 5 PM onwards. Stalls must be set up by 4 PM.",
+    description: "January 8th, 10 AM onwards. Stalls must be set up by 9 AM.",
   },
   {
     icon: MapPin,
     title: "Venue",
-    description: "Chetana College Main Ground, Bandra East, Mumbai.",
+    description: "7th Floor Coridoor, Bandra East, Mumbai.",
   },
   {
     icon: Store,
