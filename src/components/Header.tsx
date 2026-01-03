@@ -16,18 +16,18 @@ export const Header = () => {
             </div>
           </div>
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#about" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
+            <Link to="/#about" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
               About
-            </a>
+            </Link>
             <Link to="/register" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
               Register
             </Link>
-            <a href="#guidelines" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
+            <Link to="/#guidelines" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
               Guidelines
-            </a>
-            <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
+            </Link>
+            <Link to="/#contact" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
               Contact
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
