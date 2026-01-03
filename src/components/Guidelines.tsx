@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock, MapPin, Shield, Utensils, Users } from "lucide-react";
+import { CheckCircle2, Clock, MapPin, Shield, Store, Users } from "lucide-react";
 
 const guidelines = [
   {
@@ -12,14 +12,14 @@ const guidelines = [
     description: "Chetana College Main Ground, Bandra East, Mumbai.",
   },
   {
-    icon: Utensils,
-    title: "Food Standards",
-    description: "All food must be freshly prepared with proper hygiene practices.",
+    icon: Store,
+    title: "Stall Categories",
+    description: "Food stalls, jewelry & accessories, books & magazines welcome.",
   },
   {
     icon: Shield,
     title: "Licensing",
-    description: "FSSAI license or food handler certificate recommended.",
+    description: "Relevant licenses recommended (FSSAI for food stalls).",
   },
   {
     icon: Users,
