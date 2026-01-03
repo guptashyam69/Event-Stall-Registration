@@ -12,7 +12,7 @@ export const Header = () => {
               <h1 className="font-display font-bold text-lg text-foreground">
                 Chetana College
               </h1>
-              <p className="text-xs text-muted-foreground">New Year Celebration 2026</p>
+              <p className="text-xs text-muted-foreground">Vibe Into The New Year</p>
             </div>
           </div>
           <nav className="hidden md:flex items-center gap-8">
