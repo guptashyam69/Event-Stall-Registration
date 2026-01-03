@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import RegistrationForm from "@/components/RegistrationForm";
 import { Button } from "@/components/ui/button";
@@ -25,3 +26,4 @@ const Register = () => {
 };
 
 export default Register;
+
