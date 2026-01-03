@@ -18,18 +18,18 @@ const guidelines = [
   },
   {
     icon: Shield,
-    title: "Licensing",
-    description: "Relevant licenses recommended (FSSAI for food stalls).",
+    title: "Stall Setup Rules",
+    description: "Standard stall size will be allotted. No drilling, nailing, or permanent fixtures allowed.",
   },
   {
     icon: Users,
-    title: "Staff Limit",
-    description: "Maximum 3 persons per stall for smooth operations.",
+    title: "Cleanliness & Waste Management",
+    description: "Stall owners must maintain cleanliness. Dispose waste only in designated bins.",
   },
   {
     icon: CheckCircle2,
-    title: "Registration Fee",
-    description: "₹1,500 per stall (includes table, chairs & electricity).",
+    title: "Safety & Conduct",
+    description: "Participants must follow college rules. Any misconduct may lead to stall removal.",
   },
 ];
 
