@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { Guidelines } from "@/components/Guidelines";
 import { Confetti } from "@/components/Confetti";
-import { PartyPopper, Sparkles, UtensilsCrossed } from "lucide-react";
+import { PartyPopper, Sparkles, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
@@ -22,14 +22,14 @@ const Index = () => {
           </div>
 
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in" style={{ animationDelay: "100ms" }}>
-            <span className="text-foreground">Food Stall</span>
+            <span className="text-foreground">Open Stall</span>
             <br />
             <span className="text-gradient-gold">Registration</span>
           </h1>
 
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: "200ms" }}>
             Be part of Chetana College's grand New Year celebration! 
-            Register your food stall and serve delicious treats to hundreds of attendees.
+            Register your stall for food, jewelry & accessories, or books & magazines.
           </p>
 
           <div className="mb-12 animate-fade-in" style={{ animationDelay: "300ms" }}>
@@ -40,7 +40,7 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "400ms" }}>
             <Button variant="hero" size="xl" asChild>
               <Link to="/register">
-                <UtensilsCrossed className="w-5 h-5" />
+                <Store className="w-5 h-5" />
                 Register Now
               </Link>
             </Button>
@@ -69,14 +69,14 @@ const Index = () => {
               Join the <span className="text-gradient-gold">Celebration</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              Chetana College invites food enthusiasts, vendors, and culinary entrepreneurs to 
-              be part of our spectacular New Year's Eve food festival. Showcase your culinary 
-              skills to over 1,000+ attendees and make this celebration memorable!
+              Chetana College invites vendors, entrepreneurs, and creators to 
+              be part of our spectacular New Year's Eve open stall festival. Showcase your 
+              products—from delicious food to beautiful jewelry, accessories, books, and magazines—to over 1,000+ attendees!
             </p>
             <div className="grid grid-cols-3 gap-6 max-w-md mx-auto">
               <div className="text-center">
                 <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">50+</p>
-                <p className="text-muted-foreground text-sm">Food Stalls</p>
+                <p className="text-muted-foreground text-sm">Open Stalls</p>
               </div>
               <div className="text-center">
                 <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">1000+</p>
@@ -99,7 +99,7 @@ const Index = () => {
               Event <span className="text-gradient-gold">Guidelines</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Please review these important guidelines before registering your food stall
+              Please review these important guidelines before registering your stall
             </p>
           </div>
 
