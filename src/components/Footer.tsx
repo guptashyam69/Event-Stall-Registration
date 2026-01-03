@@ -45,10 +45,8 @@ export const Footer = () => {
               Event Coordinators
             </h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
-              <li>Prof. Sharma - Food Committee Head</li>
-              <li>Ms. Priya - Stall Coordinator</li>
-              <li>Mr. Rahul - Logistics Manager</li>
-            </ul>
+              <li>Prof. Kunjal Solanki - Cultural Coordinator</li>
+              </ul>
           </div>
         </div>
 
