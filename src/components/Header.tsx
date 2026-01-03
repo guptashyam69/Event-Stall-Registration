@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.jpg";
 
 export const Header = () => {
@@ -18,9 +19,9 @@ export const Header = () => {
             <a href="#about" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
               About
             </a>
-            <a href="#register" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
+            <Link to="/register" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
               Register
-            </a>
+            </Link>
             <a href="#guidelines" className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium">
               Guidelines
             </a>
