@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.jpg";
 
 export const Header = () => {
+  const location = useLocation();
+
+  // Check if current page is Register
+  const isRegisterPage = location.pathname === "/register";
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4">
@@ -24,39 +29,42 @@ export const Header = () => {
             </div>
           </div>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <a
-              href="#about"
-              className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
-            >
-              About
-            </a>
+          {/* Navigation (HIDDEN on Register Page) */}
+          {!isRegisterPage && (
+            <nav className="hidden md:flex items-center gap-8">
+              <a
+                href="#about"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+              >
+                About
+              </a>
 
-            <Link
-              to="/register"
-              className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
-            >
-              Register
-            </Link>
+              <Link
+                to="/register"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+              >
+                Register
+              </Link>
 
-            <a
-              href="#guidelines"
-              className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
-            >
-              Guidelines
-            </a>
+              <a
+                href="#guidelines"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+              >
+                Guidelines
+              </a>
 
-            <a
-              href="#contact"
-              className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
-            >
-              Contact
-            </a>
-          </nav>
+              <a
+                href="#contact"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+              >
+                Contact
+              </a>
+            </nav>
+          )}
 
         </div>
       </div>
     </header>
   );
 };
+
