@@ -16,7 +16,7 @@ export const Footer = () => {
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Join us for an unforgettable New Year celebration filled with delicious food, 
-              music, and festivities. Register your food stall today!
+              music, and festivities. Register your Stall today!
             </p>
           </div>
 
@@ -27,11 +27,7 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <Phone className="w-4 h-4 text-primary" />
-                +91 98765 43210
-              </li>
-              <li className="flex items-center gap-3 text-muted-foreground text-sm">
-                <Mail className="w-4 h-4 text-primary" />
-                events@chetanacollege.edu.in
+                +91 91369 14423
               </li>
               <li className="flex items-start gap-3 text-muted-foreground text-sm">
                 <MapPin className="w-4 h-4 text-primary mt-0.5" />
