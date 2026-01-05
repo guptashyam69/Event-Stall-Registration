@@ -38,14 +38,15 @@ export const CountdownTimer = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const TimeBlock = ({ value, label }: { value: number; label: string }) => (
+  const TimeBlock = ({ value, label, colorClass }: { value: number; label: string; colorClass: string }) => (
     <div className="flex flex-col items-center">
-      <div className="bg-gradient-card border border-border rounded-xl p-4 md:p-6 min-w-[70px] md:min-w-[90px] animate-pulse-glow">
-        <span className="text-3xl md:text-5xl font-bold text-gradient-gold font-display">
+      <div className="bg-card border-2 border-primary/20 rounded-2xl p-4 md:p-6 min-w-[70px] md:min-w-[100px] shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden group">
+        <div className="absolute inset-0 bg-gradient-to-br from-saffron/5 to-marigold/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <span className={`text-3xl md:text-5xl font-bold ${colorClass} font-display relative z-10`}>
           {value.toString().padStart(2, "0")}
         </span>
       </div>
-      <span className="text-muted-foreground text-xs md:text-sm mt-2 uppercase tracking-wider">
+      <span className="text-muted-foreground text-xs md:text-sm mt-3 uppercase tracking-widest font-semibold">
         {label}
       </span>
     </div>
@@ -53,10 +54,10 @@ export const CountdownTimer = () => {
 
   return (
     <div className="flex gap-3 md:gap-6 justify-center">
-      <TimeBlock value={timeLeft.days} label="Days" />
-      <TimeBlock value={timeLeft.hours} label="Hours" />
-      <TimeBlock value={timeLeft.minutes} label="Minutes" />
-      <TimeBlock value={timeLeft.seconds} label="Seconds" />
+      <TimeBlock value={timeLeft.days} label="Days" colorClass="text-gradient-saffron" />
+      <TimeBlock value={timeLeft.hours} label="Hours" colorClass="text-gradient-rose" />
+      <TimeBlock value={timeLeft.minutes} label="Minutes" colorClass="text-gradient-gold" />
+      <TimeBlock value={timeLeft.seconds} label="Seconds" colorClass="text-gradient-sky" />
     </div>
   );
 };

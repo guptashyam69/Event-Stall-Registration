@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
+        sans: ['Poppins', 'sans-serif'],
+        display: ['Dancing Script', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,19 +51,24 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
+        saffron: {
+          DEFAULT: "hsl(var(--saffron))",
+          light: "hsl(var(--saffron-light))",
         },
-        orange: "hsl(var(--orange))",
-        pink: "hsl(var(--pink))",
-        teal: "hsl(var(--teal))",
-        purple: "hsl(var(--purple))",
-        coral: "hsl(var(--coral))",
-        midnight: {
-          DEFAULT: "hsl(var(--midnight))",
-          light: "hsl(var(--midnight-light))",
+        marigold: {
+          DEFAULT: "hsl(var(--marigold))",
+          light: "hsl(var(--marigold-light))",
         },
+        rose: {
+          DEFAULT: "hsl(var(--rose))",
+          light: "hsl(var(--rose-light))",
+        },
+        sky: {
+          DEFAULT: "hsl(var(--sky))",
+          light: "hsl(var(--sky-light))",
+        },
+        cream: "hsl(var(--cream))",
+        "warm-white": "hsl(var(--warm-white))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -87,12 +92,17 @@ export default {
           from: { opacity: "0", transform: "translateX(-20px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
+        "scale-up": {
+          from: { transform: "scale(0.95)", opacity: "0" },
+          to: { transform: "scale(1)", opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out forwards",
         "slide-in": "slide-in 0.5s ease-out forwards",
+        "scale-up": "scale-up 0.4s ease-out forwards",
       },
     },
   },
