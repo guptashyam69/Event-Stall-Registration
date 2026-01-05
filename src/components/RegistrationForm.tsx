@@ -16,9 +16,9 @@ const RegistrationForm = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
+  // ✅ Email removed, name kept
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
     year: "",
     course: "",
@@ -35,7 +35,6 @@ const RegistrationForm = () => {
     // 🧪 Validation
     if (
       !formData.name ||
-      !formData.email ||
       !formData.phone ||
       !formData.year ||
       !formData.course ||
@@ -44,16 +43,6 @@ const RegistrationForm = () => {
       toast({
         title: "Error",
         description: "Please fill in all fields",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      toast({
-        title: "Error",
-        description: "Please enter a valid email address",
         variant: "destructive",
       });
       return;
@@ -72,10 +61,9 @@ const RegistrationForm = () => {
     setIsLoading(true);
 
     try {
-      // ✅ IMPORTANT: FormData (NOT JSON)
+      // ✅ FormData (required for Apps Script)
       const fd = new FormData();
       fd.append("name", formData.name);
-      fd.append("email", formData.email);
       fd.append("phone", formData.phone);
       fd.append("year", formData.year);
       fd.append("course", formData.course);
@@ -93,7 +81,6 @@ const RegistrationForm = () => {
 
       setFormData({
         name: "",
-        email: "",
         phone: "",
         year: "",
         course: "",
@@ -129,32 +116,17 @@ const RegistrationForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="rounded-2xl border p-6 space-y-5">
 
-            {/* FULL NAME */}
+            {/* FULL NAME (EMAIL FIELD REPLACED) */}
             <div className="space-y-2">
               <Label htmlFor="name">Full Name *</Label>
               <Input
                 id="name"
-                name="name"              // ✅ VERY IMPORTANT
+                name="name"
                 type="text"
                 placeholder="Enter your full name"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
-                }
-              />
-            </div>
-
-            {/* EMAIL */}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email *</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="your@email.com"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
                 }
               />
             </div>
