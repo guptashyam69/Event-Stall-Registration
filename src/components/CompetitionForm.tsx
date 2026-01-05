@@ -3,7 +3,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Store, Loader2, Send } from "lucide-react";
+import { Trophy, Loader2, Send } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -12,14 +12,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const RegistrationForm = () => {
+const CompetitionForm = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    category: "",
+    competition: "",
   });
 
   // Replace this with your Google Sheets webhook URL
@@ -28,7 +28,7 @@ const RegistrationForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.phone || !formData.category) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.competition) {
       toast({
         title: "Error",
         description: "Please fill in all fields",
@@ -80,16 +80,16 @@ const RegistrationForm = () => {
         body: JSON.stringify({
           ...formData,
           timestamp: new Date().toISOString(),
-          type: "stall_registration",
+          type: "competition_registration",
         }),
       });
 
       toast({
         title: "Registration Submitted! 🎉",
-        description: "Your stall registration has been sent. We'll contact you soon!",
+        description: "Your competition registration has been sent. Good luck!",
       });
 
-      setFormData({ name: "", email: "", phone: "", category: "" });
+      setFormData({ name: "", email: "", phone: "", competition: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
@@ -103,85 +103,86 @@ const RegistrationForm = () => {
   };
 
   return (
-    <section id="register" className="py-20 px-4">
+    <section id="competition" className="py-20 px-4">
       <div className="container mx-auto max-w-xl">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6">
-            <Store className="w-8 h-8 text-primary" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-pink/20 mb-6">
+            <Trophy className="w-8 h-8 text-pink" />
           </div>
           <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-            <span className="text-gradient-rainbow">Stall Registration</span>
+            <span className="text-gradient-pink">Competition Registration</span>
           </h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Register your stall for Makar Sankranti celebration
+            Join exciting competitions at Makar Sankranti celebration
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 p-6 md:p-8 shadow-2xl space-y-5">
+          <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-pink/30 p-6 md:p-8 shadow-2xl space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-foreground font-medium">
+              <Label htmlFor="comp-name" className="text-foreground font-medium">
                 Full Name <span className="text-pink">*</span>
               </Label>
               <Input
-                id="name"
+                id="comp-name"
                 type="text"
                 placeholder="Enter your full name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-muted/50 border-border focus:border-primary focus:ring-primary"
+                className="bg-muted/50 border-border focus:border-pink focus:ring-pink"
                 maxLength={100}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-foreground font-medium">
+              <Label htmlFor="comp-email" className="text-foreground font-medium">
                 Email Address <span className="text-pink">*</span>
               </Label>
               <Input
-                id="email"
+                id="comp-email"
                 type="email"
                 placeholder="your@email.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-muted/50 border-border focus:border-primary focus:ring-primary"
+                className="bg-muted/50 border-border focus:border-pink focus:ring-pink"
                 maxLength={255}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone" className="text-foreground font-medium">
+              <Label htmlFor="comp-phone" className="text-foreground font-medium">
                 Phone Number <span className="text-pink">*</span>
               </Label>
               <Input
-                id="phone"
+                id="comp-phone"
                 type="tel"
                 placeholder="10-digit phone number"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
-                className="bg-muted/50 border-border focus:border-primary focus:ring-primary"
+                className="bg-muted/50 border-border focus:border-pink focus:ring-pink"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="category" className="text-foreground font-medium">
-                Stall Category <span className="text-pink">*</span>
+              <Label htmlFor="competition" className="text-foreground font-medium">
+                Competition <span className="text-pink">*</span>
               </Label>
-              <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
-                <SelectTrigger className="bg-muted/50 border-border focus:border-primary focus:ring-primary">
-                  <SelectValue placeholder="Select a category" />
+              <Select value={formData.competition} onValueChange={(value) => setFormData({ ...formData, competition: value })}>
+                <SelectTrigger className="bg-muted/50 border-border focus:border-pink focus:ring-pink">
+                  <SelectValue placeholder="Select a competition" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="food">🍔 Food Stall</SelectItem>
-                  <SelectItem value="jewelry">💎 Jewelry & Accessories</SelectItem>
-                  <SelectItem value="books">📚 Books & Magazines</SelectItem>
+                  <SelectItem value="rangoli">🎨 Rangoli Making</SelectItem>
+                  <SelectItem value="kite">🪁 Kite Flying</SelectItem>
+                  <SelectItem value="cooking">👨‍🍳 Cooking Contest</SelectItem>
+                  <SelectItem value="dance">💃 Dance Competition</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <Button 
               type="submit" 
-              variant="hero" 
+              variant="pink" 
               size="lg" 
               className="w-full mt-4"
               disabled={isLoading}
@@ -205,4 +206,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default CompetitionForm;
