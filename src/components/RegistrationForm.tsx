@@ -215,7 +215,6 @@ const RegistrationForm = () => {
                       <SelectItem value="1st">1st Year</SelectItem>
                       <SelectItem value="2nd">2nd Year</SelectItem>
                       <SelectItem value="3rd">3rd Year</SelectItem>
-                      <SelectItem value="4th">4th Year</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -235,10 +234,11 @@ const RegistrationForm = () => {
                       <SelectValue placeholder="Select course" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
-                      <SelectItem value="btech">B.Tech</SelectItem>
-                      <SelectItem value="bca">BCA</SelectItem>
-                      <SelectItem value="mca">MCA</SelectItem>
-                      <SelectItem value="mba">MBA</SelectItem>
+                      <SelectItem value="btech">Bms</SelectItem>
+                      <SelectItem value="bca">Baf</SelectItem>
+                      <SelectItem value="mca">Bsc IT</SelectItem>
+                      <SelectItem value="mba">Bba</SelectItem>
+                      <SelectItem value="mba">Bammc</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
