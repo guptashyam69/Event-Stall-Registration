@@ -7,7 +7,8 @@ interface TimeLeft {
   seconds: number;
 }
 
-const targetDate = new Date("2026-01-08T00:00:00");
+// Event date: 14th January 2026 at 10:00 AM IST
+const targetDate = new Date("2026-01-14T10:00:00");
 
 export const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({

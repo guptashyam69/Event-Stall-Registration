@@ -3,7 +3,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Store, Loader2, Send } from "lucide-react";
+import { Store, Loader2, Send, Sparkles, User, Mail, Phone, GraduationCap, BookOpen, ShoppingBag } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -112,139 +112,182 @@ const RegistrationForm = () => {
   };
 
   return (
-    <section id="register" className="py-20 px-4">
-      <div className="container mx-auto max-w-xl">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6">
-            <Store className="w-8 h-8 text-primary" />
+    <section id="register" className="py-16 px-4 bg-gradient-hero min-h-screen">
+      <div className="container mx-auto max-w-lg">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-saffron to-marigold shadow-lg mb-6 animate-bounce-soft">
+            <Store className="w-10 h-10 text-primary-foreground" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-3 text-gradient-festive">
             Stall Registration
           </h2>
-          <p className="text-muted-foreground">
-            Register your stall for the event
+          <p className="text-muted-foreground font-medium">
+            Register your stall for Sankrant Sohala 2026
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="rounded-2xl border p-6 space-y-5">
+        {/* Form Card */}
+        <form onSubmit={handleSubmit}>
+          <div className="bg-card rounded-3xl border-2 border-primary/10 p-8 shadow-xl relative overflow-hidden">
+            {/* Decorative corner */}
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-marigold/20 to-saffron/20 rounded-full blur-2xl" />
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-gradient-to-br from-rose/20 to-rose-light/20 rounded-full blur-2xl" />
+            
+            <div className="space-y-5 relative z-10">
+              {/* Full Name */}
+              <div className="space-y-2">
+                <Label htmlFor="name" className="flex items-center gap-2 text-foreground font-semibold">
+                  <User className="w-4 h-4 text-saffron" />
+                  Full Name
+                </Label>
+                <Input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Enter your full name"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className="h-12 rounded-xl border-2 border-border focus:border-primary bg-background/50 placeholder:text-muted-foreground/60"
+                />
+              </div>
 
-            {/* FULL NAME */}
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name *</Label>
-              <Input
-                id="name"
-                name="name"              // ✅ VERY IMPORTANT
-                type="text"
-                placeholder="Enter your full name"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-              />
-            </div>
+              {/* Email */}
+              <div className="space-y-2">
+                <Label htmlFor="email" className="flex items-center gap-2 text-foreground font-semibold">
+                  <Mail className="w-4 h-4 text-rose" />
+                  Email Address
+                </Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className="h-12 rounded-xl border-2 border-border focus:border-primary bg-background/50 placeholder:text-muted-foreground/60"
+                />
+              </div>
 
-            {/* EMAIL */}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email *</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="your@email.com"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-              />
-            </div>
+              {/* Phone */}
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="flex items-center gap-2 text-foreground font-semibold">
+                  <Phone className="w-4 h-4 text-sky" />
+                  Phone Number
+                </Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="10-digit phone number"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      phone: e.target.value.replace(/\D/g, "").slice(0, 10),
+                    })
+                  }
+                  className="h-12 rounded-xl border-2 border-border focus:border-primary bg-background/50 placeholder:text-muted-foreground/60"
+                />
+              </div>
 
-            {/* PHONE */}
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone *</Label>
-              <Input
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder="10-digit phone number"
-                value={formData.phone}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    phone: e.target.value.replace(/\D/g, "").slice(0, 10),
-                  })
-                }
-              />
-            </div>
+              {/* Year + Course */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="flex items-center gap-2 text-foreground font-semibold">
+                    <GraduationCap className="w-4 h-4 text-marigold" />
+                    Year
+                  </Label>
+                  <Select
+                    value={formData.year}
+                    onValueChange={(v) =>
+                      setFormData({ ...formData, year: v })
+                    }
+                  >
+                    <SelectTrigger className="h-12 rounded-xl border-2 border-border focus:border-primary bg-background/50">
+                      <SelectValue placeholder="Select year" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl">
+                      <SelectItem value="1st">1st Year</SelectItem>
+                      <SelectItem value="2nd">2nd Year</SelectItem>
+                      <SelectItem value="3rd">3rd Year</SelectItem>
+                      <SelectItem value="4th">4th Year</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
-            {/* YEAR + COURSE */}
-            <div className="grid grid-cols-2 gap-4">
-              <Select
-                value={formData.year}
-                onValueChange={(v) =>
-                  setFormData({ ...formData, year: v })
-                }
+                <div className="space-y-2">
+                  <Label className="flex items-center gap-2 text-foreground font-semibold">
+                    <BookOpen className="w-4 h-4 text-saffron" />
+                    Course
+                  </Label>
+                  <Select
+                    value={formData.course}
+                    onValueChange={(v) =>
+                      setFormData({ ...formData, course: v })
+                    }
+                  >
+                    <SelectTrigger className="h-12 rounded-xl border-2 border-border focus:border-primary bg-background/50">
+                      <SelectValue placeholder="Select course" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl">
+                      <SelectItem value="btech">B.Tech</SelectItem>
+                      <SelectItem value="bca">BCA</SelectItem>
+                      <SelectItem value="mca">MCA</SelectItem>
+                      <SelectItem value="mba">MBA</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              {/* Category */}
+              <div className="space-y-2">
+                <Label className="flex items-center gap-2 text-foreground font-semibold">
+                  <ShoppingBag className="w-4 h-4 text-rose" />
+                  Stall Category
+                </Label>
+                <Select
+                  value={formData.category}
+                  onValueChange={(v) =>
+                    setFormData({ ...formData, category: v })
+                  }
+                >
+                  <SelectTrigger className="h-12 rounded-xl border-2 border-border focus:border-primary bg-background/50">
+                    <SelectValue placeholder="Select your stall category" />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-xl">
+                    <SelectItem value="food">🍲 Food Stall</SelectItem>
+                    <SelectItem value="jewelry">💎 Jewelry</SelectItem>
+                    <SelectItem value="books">📚 Books</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Submit Button */}
+              <Button 
+                type="submit" 
+                variant="hero"
+                size="xl"
+                className="w-full mt-4" 
+                disabled={isLoading}
               >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select year" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1st">1st Year</SelectItem>
-                  <SelectItem value="2nd">2nd Year</SelectItem>
-                  <SelectItem value="3rd">3rd Year</SelectItem>
-                  <SelectItem value="4th">4th Year</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select
-                value={formData.course}
-                onValueChange={(v) =>
-                  setFormData({ ...formData, course: v })
-                }
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select course" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="btech">B.Tech</SelectItem>
-                  <SelectItem value="bca">BCA</SelectItem>
-                  <SelectItem value="mca">MCA</SelectItem>
-                  <SelectItem value="mba">MBA</SelectItem>
-                </SelectContent>
-              </Select>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-5 h-5" />
+                    Submit Registration
+                  </>
+                )}
+              </Button>
             </div>
-
-            {/* CATEGORY */}
-            <Select
-              value={formData.category}
-              onValueChange={(v) =>
-                setFormData({ ...formData, category: v })
-              }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="food">Food Stall</SelectItem>
-                <SelectItem value="jewelry">Jewelry</SelectItem>
-                <SelectItem value="books">Books</SelectItem>
-              </SelectContent>
-            </Select>
-
-            {/* SUBMIT */}
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                  Submitting...
-                </>
-              ) : (
-                <>
-                  <Send className="w-5 h-5 mr-2" />
-                  Submit Registration
-                </>
-              )}
-            </Button>
           </div>
         </form>
       </div>
