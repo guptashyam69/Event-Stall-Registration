@@ -25,14 +25,14 @@ const RegistrationForm = () => {
     category: "",
   });
 
-  // ✅ Your Google Apps Script Web App URL
+  // 🔗 Google Apps Script Web App URL
   const GOOGLE_SHEETS_WEBHOOK =
     "https://script.google.com/macros/s/AKfycbyBaZ2RKlYiyFG8r_KycQ_8khjxivq36CyYF2b0n9aAUpRanj8A0V0gZTTBSCoGqZMr/exec";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 🔎 Validation
+    // 🧪 Validation
     if (
       !formData.name ||
       !formData.email ||
@@ -72,7 +72,7 @@ const RegistrationForm = () => {
     setIsLoading(true);
 
     try {
-      // ✅ IMPORTANT FIX: Use FormData (NOT JSON)
+      // ✅ IMPORTANT: FormData (NOT JSON)
       const fd = new FormData();
       fd.append("name", formData.name);
       fd.append("email", formData.email);
@@ -88,7 +88,7 @@ const RegistrationForm = () => {
 
       toast({
         title: "Registration Submitted! 🎉",
-        description: "Your stall registration has been sent. We'll contact you soon!",
+        description: "Your stall registration has been sent successfully.",
       });
 
       setFormData({
@@ -100,7 +100,7 @@ const RegistrationForm = () => {
         category: "",
       });
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Submission error:", error);
       toast({
         title: "Error",
         description: "Failed to submit registration. Please try again.",
@@ -118,7 +118,7 @@ const RegistrationForm = () => {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6">
             <Store className="w-8 h-8 text-primary" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Stall Registration
           </h2>
           <p className="text-muted-foreground">
@@ -128,9 +128,15 @@ const RegistrationForm = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="rounded-2xl border p-6 space-y-5">
+
+            {/* FULL NAME */}
             <div className="space-y-2">
-              <Label>Full Name *</Label>
+              <Label htmlFor="name">Full Name *</Label>
               <Input
+                id="name"
+                name="name"              // ✅ VERY IMPORTANT
+                type="text"
+                placeholder="Enter your full name"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
@@ -138,10 +144,14 @@ const RegistrationForm = () => {
               />
             </div>
 
+            {/* EMAIL */}
             <div className="space-y-2">
-              <Label>Email *</Label>
+              <Label htmlFor="email">Email *</Label>
               <Input
+                id="email"
+                name="email"
                 type="email"
+                placeholder="your@email.com"
                 value={formData.email}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
@@ -149,10 +159,14 @@ const RegistrationForm = () => {
               />
             </div>
 
+            {/* PHONE */}
             <div className="space-y-2">
-              <Label>Phone *</Label>
+              <Label htmlFor="phone">Phone *</Label>
               <Input
+                id="phone"
+                name="phone"
                 type="tel"
+                placeholder="10-digit phone number"
                 value={formData.phone}
                 onChange={(e) =>
                   setFormData({
@@ -163,6 +177,7 @@ const RegistrationForm = () => {
               />
             </div>
 
+            {/* YEAR + COURSE */}
             <div className="grid grid-cols-2 gap-4">
               <Select
                 value={formData.year}
@@ -199,6 +214,7 @@ const RegistrationForm = () => {
               </Select>
             </div>
 
+            {/* CATEGORY */}
             <Select
               value={formData.category}
               onValueChange={(v) =>
@@ -215,6 +231,7 @@ const RegistrationForm = () => {
               </SelectContent>
             </Select>
 
+            {/* SUBMIT */}
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? (
                 <>
