@@ -207,7 +207,6 @@ const CompetitionForm = () => {
                     <SelectItem value="1st">1st Year</SelectItem>
                     <SelectItem value="2nd">2nd Year</SelectItem>
                     <SelectItem value="3rd">3rd Year</SelectItem>
-                    <SelectItem value="4th">4th Year</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -228,10 +227,11 @@ const CompetitionForm = () => {
                     <SelectValue placeholder="Select your course" />
                   </SelectTrigger>
                   <SelectContent className="rounded-xl">
-                    <SelectItem value="btech">B.Tech</SelectItem>
-                    <SelectItem value="bca">BCA</SelectItem>
-                    <SelectItem value="mca">MCA</SelectItem>
-                    <SelectItem value="mba">MBA</SelectItem>
+                    <SelectItem value="btech">Bms</SelectItem>
+                    <SelectItem value="bca">Baf</SelectItem>
+                    <SelectItem value="mca">Bsc IT</SelectItem>
+                    <SelectItem value="mba">Bba</SelectItem>
+                    <SelectItem value="mba">Bammc</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -252,10 +252,9 @@ const CompetitionForm = () => {
                     <SelectValue placeholder="Select a competition" />
                   </SelectTrigger>
                   <SelectContent className="rounded-xl">
-                    <SelectItem value="rangoli">🎨 Rangoli Making</SelectItem>
-                    <SelectItem value="kite">🪁 Kite Flying</SelectItem>
-                    <SelectItem value="dance">💃 Dance Competition</SelectItem>
-                    <SelectItem value="cooking">👨‍🍳 Cooking Contest</SelectItem>
+                    <SelectItem value="rangoli">🎨 Pot Designing</SelectItem>
+                    <SelectItem value="kite">🪁 Kite Making</SelectItem>
+                    <SelectItem value="cooking">👨‍🍳 Kite Decoration</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
