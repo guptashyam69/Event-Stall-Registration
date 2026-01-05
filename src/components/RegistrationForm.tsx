@@ -234,11 +234,11 @@ const RegistrationForm = () => {
                       <SelectValue placeholder="Select course" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
-                      <SelectItem value="btech">Bms</SelectItem>
-                      <SelectItem value="bca">Baf</SelectItem>
-                      <SelectItem value="mca">Bsc IT</SelectItem>
-                      <SelectItem value="mba">Bba</SelectItem>
-                      <SelectItem value="mba">Bammc</SelectItem>
+                      <SelectItem value="bms">Bms</SelectItem>
+                      <SelectItem value="baf">Baf</SelectItem>
+                      <SelectItem value="bsc it">Bsc IT</SelectItem>
+                      <SelectItem value="bba">Bba</SelectItem>
+                      <SelectItem value="bammc">Bammc</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
