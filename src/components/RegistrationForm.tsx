@@ -24,8 +24,7 @@ const RegistrationForm = () => {
     category: "",
   });
 
-  // Replace this with your Google Sheets webhook URL
-  const GOOGLE_SHEETS_WEBHOOK = "";
+  const GOOGLE_SHEETS_WEBHOOK = "https://script.google.com/macros/s/AKfycbyBaZ2RKlYiyFG8r_KycQ_8khjxivq36CyYF2b0n9aAUpRanj8A0V0gZTTBSCoGqZMr/exec";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
