@@ -74,7 +74,6 @@ const RegistrationForm = () => {
     try {
       // ✅ IMPORTANT: FormData (NOT JSON)
       const fd = new FormData();
-      fd.append("formType", "stall");
       fd.append("name", formData.name);
       fd.append("email", formData.email);
       fd.append("phone", formData.phone);
