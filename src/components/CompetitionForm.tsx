@@ -19,6 +19,8 @@ const CompetitionForm = () => {
     name: "",
     email: "",
     phone: "",
+    year: "",
+    course: "",
     competition: "",
   });
 
@@ -28,7 +30,7 @@ const CompetitionForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.phone || !formData.competition) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.year || !formData.course || !formData.competition) {
       toast({
         title: "Error",
         description: "Please fill in all fields",
@@ -89,7 +91,7 @@ const CompetitionForm = () => {
         description: "Your competition registration has been sent. Good luck!",
       });
 
-      setFormData({ name: "", email: "", phone: "", competition: "" });
+      setFormData({ name: "", email: "", phone: "", year: "", course: "", competition: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
@@ -161,6 +163,44 @@ const CompetitionForm = () => {
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
                 className="bg-muted/50 border-border focus:border-pink focus:ring-pink"
               />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="comp-year" className="text-foreground font-medium">
+                  Year <span className="text-pink">*</span>
+                </Label>
+                <Select value={formData.year} onValueChange={(value) => setFormData({ ...formData, year: value })}>
+                  <SelectTrigger className="bg-muted/50 border-border focus:border-pink focus:ring-pink">
+                    <SelectValue placeholder="Select year" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1st">1st Year</SelectItem>
+                    <SelectItem value="2nd">2nd Year</SelectItem>
+                    <SelectItem value="3rd">3rd Year</SelectItem>
+                    <SelectItem value="4th">4th Year</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="comp-course" className="text-foreground font-medium">
+                  Course <span className="text-pink">*</span>
+                </Label>
+                <Select value={formData.course} onValueChange={(value) => setFormData({ ...formData, course: value })}>
+                  <SelectTrigger className="bg-muted/50 border-border focus:border-pink focus:ring-pink">
+                    <SelectValue placeholder="Select course" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="btech">B.Tech</SelectItem>
+                    <SelectItem value="mtech">M.Tech</SelectItem>
+                    <SelectItem value="bba">BBA</SelectItem>
+                    <SelectItem value="mba">MBA</SelectItem>
+                    <SelectItem value="bca">BCA</SelectItem>
+                    <SelectItem value="mca">MCA</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             <div className="space-y-2">
