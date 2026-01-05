@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { CountdownTimer } from "@/components/CountdownTimer";
 import { Guidelines } from "@/components/Guidelines";
 import { Confetti } from "@/components/Confetti";
-import { PartyPopper, Sparkles, Store } from "lucide-react";
+import { Sun, Sparkles, Store, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
@@ -17,19 +17,17 @@ const Index = () => {
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-hero">
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-in">
-            <PartyPopper className="w-4 h-4 text-primary" />
-            <span className="text-primary text-sm font-medium">New Year Celebration 2026</span>
+            <Sun className="w-4 h-4 text-primary" />
+            <span className="text-primary text-sm font-medium">Makar Sankranti 2026</span>
           </div>
 
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in" style={{ animationDelay: "100ms" }}>
-            <span className="text-foreground">Open Stall</span>
-            <br />
-            <span className="text-gradient-gold">Registration</span>
+            <span className="text-gradient-rainbow">Happy Makar Sankranti</span>
           </h1>
 
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: "200ms" }}>
-            Be part of Chetana College's grand New Year celebration! 
-            Register your stall for food, jewelry & accessories, or books & magazines.
+            Celebrate the harvest festival with Chetana College! 
+            Register your stalls or join exciting competitions.
           </p>
 
           <div className="mb-12 animate-fade-in" style={{ animationDelay: "300ms" }}>
@@ -41,23 +39,27 @@ const Index = () => {
             <Button variant="hero" size="xl" asChild>
               <Link to="/register">
                 <Store className="w-5 h-5" />
-                Register Now
+                Stall Registration
               </Link>
             </Button>
-            <Button variant="outline" size="xl" asChild>
-              <a href="#guidelines">
-                View Guidelines
-              </a>
+            <Button variant="pink" size="xl" asChild>
+              <Link to="/competition">
+                <Trophy className="w-5 h-5" />
+                Competition Registration
+              </Link>
             </Button>
           </div>
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute top-20 left-10 text-primary/20 animate-float">
+        <div className="absolute top-20 left-10 text-pink/30 animate-float">
           <Sparkles className="w-16 h-16" />
         </div>
-        <div className="absolute bottom-20 right-10 text-primary/20 animate-float" style={{ animationDelay: "2s" }}>
-          <PartyPopper className="w-20 h-20" />
+        <div className="absolute bottom-20 right-10 text-teal/30 animate-float" style={{ animationDelay: "2s" }}>
+          <Sun className="w-20 h-20" />
+        </div>
+        <div className="absolute top-40 right-20 text-primary/20 animate-float" style={{ animationDelay: "3s" }}>
+          <Sparkles className="w-12 h-12" />
         </div>
       </section>
 
@@ -66,12 +68,12 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Join the <span className="text-gradient-gold">Celebration</span>
+              Join the <span className="text-gradient-rainbow">Celebration</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
               Chetana College invites vendors, entrepreneurs, and creators to 
-              be part of our spectacular New Year's Eve open stall festival. Showcase your 
-              products—from delicious food to beautiful jewelry, accessories, books, and magazines—to over 1,000+ attendees!
+              be part of our spectacular Makar Sankranti festival. Showcase your 
+              products—from delicious food to beautiful jewelry, accessories, books, and magazines—to over 100+ attendees!
             </p>
             <div className="grid grid-cols-3 gap-6 max-w-md mx-auto">
               <div className="text-center">
@@ -79,11 +81,11 @@ const Index = () => {
                 <p className="text-muted-foreground text-sm">Open Stalls</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">100+</p>
+                <p className="text-3xl md:text-4xl font-bold text-gradient-pink font-display">100+</p>
                 <p className="text-muted-foreground text-sm">Attendees</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl md:text-4xl font-bold text-gradient-gold font-display">4+</p>
+                <p className="text-3xl md:text-4xl font-bold text-gradient-teal font-display">4+</p>
                 <p className="text-muted-foreground text-sm">Hours of Fun</p>
               </div>
             </div>
@@ -96,7 +98,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Event <span className="text-gradient-gold">Guidelines</span>
+              Event <span className="text-gradient-rainbow">Guidelines</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
               Please review these important guidelines before registering your stall
