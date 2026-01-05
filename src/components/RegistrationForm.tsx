@@ -32,7 +32,7 @@ const RegistrationForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 🧪 Validation
+    // ✅ Validation
     if (
       !formData.name ||
       !formData.email ||
@@ -72,18 +72,20 @@ const RegistrationForm = () => {
     setIsLoading(true);
 
     try {
-      // ✅ IMPORTANT: FormData (NOT JSON)
-      const fd = new FormData();
-      fd.append("name", formData.name);
-      fd.append("email", formData.email);
-      fd.append("phone", formData.phone);
-      fd.append("year", formData.year);
-      fd.append("course", formData.course);
-      fd.append("category", formData.category);
-
+      // ✅ JSON SUBMISSION (same as your working project)
       await fetch(GOOGLE_SHEETS_WEBHOOK, {
         method: "POST",
-        body: fd,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          year: formData.year,
+          course: formData.course,
+          category: formData.category,
+        }),
       });
 
       toast({
@@ -134,7 +136,6 @@ const RegistrationForm = () => {
               <Label htmlFor="name">Full Name *</Label>
               <Input
                 id="name"
-                name="name"              // ✅ VERY IMPORTANT
                 type="text"
                 placeholder="Enter your full name"
                 value={formData.name}
@@ -149,7 +150,6 @@ const RegistrationForm = () => {
               <Label htmlFor="email">Email *</Label>
               <Input
                 id="email"
-                name="email"
                 type="email"
                 placeholder="your@email.com"
                 value={formData.email}
@@ -164,7 +164,6 @@ const RegistrationForm = () => {
               <Label htmlFor="phone">Phone *</Label>
               <Input
                 id="phone"
-                name="phone"
                 type="tel"
                 placeholder="10-digit phone number"
                 value={formData.phone}
@@ -245,6 +244,7 @@ const RegistrationForm = () => {
                 </>
               )}
             </Button>
+
           </div>
         </form>
       </div>
