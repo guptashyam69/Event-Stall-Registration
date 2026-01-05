@@ -45,12 +45,7 @@ export const Header = () => {
                 About
               </a>
 
-              <Link
-                to="/register"
-                className="text-foreground/70 hover:text-primary transition-colors text-sm font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all"
-              >
-                Register
-              </Link>
+            
 
               <a
                 href="#guidelines"
