@@ -252,9 +252,9 @@ const CompetitionForm = () => {
                     <SelectValue placeholder="Select a competition" />
                   </SelectTrigger>
                   <SelectContent className="rounded-xl">
-                    <SelectItem value="rangoli">🎨 Pot Designing</SelectItem>
-                    <SelectItem value="kite">🪁 Kite Making</SelectItem>
-                    <SelectItem value="cooking">👨‍🍳 Kite Decoration</SelectItem>
+                    <SelectItem value="pot designing">🎨 Pot Designing</SelectItem>
+                    <SelectItem value="kite making">🪁 Kite Making</SelectItem>
+                    <SelectItem value="kite decoration">👨‍🍳 Kite Decoration</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
