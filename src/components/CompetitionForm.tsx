@@ -257,7 +257,7 @@ const CompetitionForm = () => {
     <SelectContent className="rounded-xl">
       {/* ❌ Disabled option */}
       <SelectItem value="post designing" disabled>
-        🖌️ Post Designing (Slots Full)
+        🖌️ Pot Designing (Slots Full)
       </SelectItem>
 
       {/* ✅ Active options */}
