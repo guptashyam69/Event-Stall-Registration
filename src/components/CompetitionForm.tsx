@@ -261,7 +261,7 @@ const CompetitionForm = () => {
       </SelectItem>
 
       {/* ✅ Active options */}
-      <SelectItem value="pot designing">🎨 Pot Designing</SelectItem>
+      
       <SelectItem value="kite making">🪁 Kite Making</SelectItem>
       <SelectItem value="kite decoration">👨‍🍳 Kite Decoration</SelectItem>
     </SelectContent>
