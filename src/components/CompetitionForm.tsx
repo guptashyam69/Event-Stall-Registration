@@ -237,27 +237,37 @@ const CompetitionForm = () => {
               </div>
 
               {/* Competition */}
-              <div className="space-y-2">
-                <Label className="flex items-center gap-2 text-foreground font-semibold">
-                  <Award className="w-4 h-4 text-saffron" />
-                  Competition
-                </Label>
-                <Select
-                  value={formData.competition}
-                  onValueChange={(v) =>
-                    setFormData({ ...formData, competition: v })
-                  }
-                >
-                  <SelectTrigger className="h-12 rounded-xl border-2 border-border focus:border-secondary bg-background/50">
-                    <SelectValue placeholder="Select a competition" />
-                  </SelectTrigger>
-                  <SelectContent className="rounded-xl">
-                    <SelectItem value="pot designing">🎨 Pot Designing</SelectItem>
-                    <SelectItem value="kite making">🪁 Kite Making</SelectItem>
-                    <SelectItem value="kite decoration">👨‍🍳 Kite Decoration</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+              {/* Competition */}
+<div className="space-y-2">
+  <Label className="flex items-center gap-2 text-foreground font-semibold">
+    <Award className="w-4 h-4 text-saffron" />
+    Competition
+  </Label>
+
+  <Select
+    value={formData.competition}
+    onValueChange={(v) =>
+      setFormData({ ...formData, competition: v })
+    }
+  >
+    <SelectTrigger className="h-12 rounded-xl border-2 border-border focus:border-secondary bg-background/50">
+      <SelectValue placeholder="Select a competition" />
+    </SelectTrigger>
+
+    <SelectContent className="rounded-xl">
+      {/* ❌ Disabled option */}
+      <SelectItem value="post designing" disabled>
+        🖌️ Post Designing (Slots Full)
+      </SelectItem>
+
+      {/* ✅ Active options */}
+      <SelectItem value="pot designing">🎨 Pot Designing</SelectItem>
+      <SelectItem value="kite making">🪁 Kite Making</SelectItem>
+      <SelectItem value="kite decoration">👨‍🍳 Kite Decoration</SelectItem>
+    </SelectContent>
+  </Select>
+</div>
+
 
               {/* Submit Button */}
               <Button 
