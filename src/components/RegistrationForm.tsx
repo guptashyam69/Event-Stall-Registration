@@ -239,6 +239,7 @@ const RegistrationForm = () => {
                       <SelectItem value="bsc it">Bsc IT</SelectItem>
                       <SelectItem value="bba">Bba</SelectItem>
                       <SelectItem value="bammc">Bammc</SelectItem>
+                      <SelectItem value="bbm">Bbm</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
